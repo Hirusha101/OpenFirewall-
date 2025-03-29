@@ -1,4 +1,4 @@
-# Open Firewall Project
+# Open Firewall Project. 🔥🧱
 
 A custom Python-based firewall built using `iptables` for traffic filtering and network security on Linux-based systems.
 
@@ -32,7 +32,7 @@ If it's not installed, you can install it by running:
 sudo apt update
 sudo apt install python3
 ```
-Install pip: pip is Python's package installer. Install it if you don't already have it
+Install pip. Install it if you don't already have it
 ```bash
 sudo apt install python3-pip
 ```
