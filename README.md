@@ -22,19 +22,33 @@ A custom Python-based firewall built using `iptables` for traffic filtering and 
 git clone https://github.com/Hirusha101/OpenFirewall-.git
 cd OpenFirewall 
 ```
-
-### Step 2: Create a Virtual Environment
+### Step 2: Install Python & pip
+Make sure Python 3 is installed on your system. You can verify it by running
+```bash
+python3 --version
+```
+If it's not installed, you can install it by running:
+```bash
+sudo apt update
+sudo apt install python3
+```
+Install pip: pip is Python's package installer. Install it if you don't already have it
+```bash
+sudo apt install python3-pip
+```
+   
+### Step 3: Create a Virtual Environment
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### Step 3: Install Dependencies
+### Step 4: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 4: Grant Execute Permissions (if needed)
+### Step 5: Grant Execute Permissions (if needed)
 ```bash
 chmod +x openfirewall.py
 ```
