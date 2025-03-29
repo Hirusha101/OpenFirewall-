@@ -19,7 +19,7 @@ A custom Python-based firewall built using `iptables` for traffic filtering and 
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/Hirusha101/OpenFirewall-.git
+git clone https://github.com/Hirusha101/OpenFirewall.git
 cd OpenFirewall 
 ```
 ### Step 2: Install Python & pip
