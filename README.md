@@ -1,4 +1,4 @@
-# Firewall Project
+# Open Firewall Project
 
 A custom Python-based firewall built using `iptables` for traffic filtering and network security on Linux-based systems.
 
@@ -19,8 +19,8 @@ A custom Python-based firewall built using `iptables` for traffic filtering and 
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/your-username/firewall-project.git
-cd firewall-project
+git clone https://github.com/Hirusha101/OpenFirewall-.git
+cd OpenFirewall 
 ```
 
 ### Step 2: Create a Virtual Environment
