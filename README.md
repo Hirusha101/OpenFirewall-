@@ -36,19 +36,13 @@ Install pip. Install it if you don't already have it
 ```bash
 sudo apt install python3-pip
 ```
-   
-### Step 3: Create a Virtual Environment
-```bash
-python3 -m venv venv
-source venv/bin/activate
-```
 
-### Step 4: Install Dependencies
+### Step 3: Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 5: Grant Execute Permissions (if needed)
+### Step 4: Grant Execute Permissions (if needed)
 ```bash
 chmod +x openfirewall.py
 ```
@@ -72,11 +66,6 @@ To list the current `iptables` rules:
 ```bash
 sudo iptables -L
 ```
-
-## Configuration
-You can modify the firewall rules by editing the `openfirewall.py` file:
-- Modify input and output chains
-- Add custom rules for specific IP addresses or ports
 
 ## Troubleshooting
 ### If Permission Denied Errors:
