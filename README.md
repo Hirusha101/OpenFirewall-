@@ -27,7 +27,7 @@ Make sure Python 3 is installed on your system. You can verify it by running
 ```bash
 python3 --version
 ```
-If it's not installed, you can install it by running:
+If it's not installed, you can install it by running
 ```bash
 sudo apt update
 sudo apt install python3
@@ -35,6 +35,10 @@ sudo apt install python3
 Install pip. Install it if you don't already have it
 ```bash
 sudo apt install python3-pip
+```
+Since this project uses tkinter, install it
+```bash
+sudo apt install python3-tk
 ```
 
 ### Step 3: Install Dependencies
@@ -52,7 +56,7 @@ chmod +x openfirewall.py
 ### Start the Firewall
 To start the firewall:
 ```bash
-python openfirewall.py
+python3 openfirewall.py
 ```
 
 ### Stop the Firewall
@@ -71,7 +75,7 @@ sudo iptables -L
 ### If Permission Denied Errors:
 Ensure you have root permissions:
 ```bash
-sudo python openfirewall.py
+sudo python3 openfirewall.py
 ```
 
 ### Reset iptables Rules:
