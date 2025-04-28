@@ -1,94 +1,127 @@
-# Open Firewall Project. 🔥🧱
+# FireSense Firewall 🔥🧱
 
-A custom Python-based firewall built using `iptables` for traffic filtering and network security on Linux-based systems.
+A custom Python-based firewall with a web interface for managing network traffic, NAT, and security on Linux systems, built using Flask, SocketIO, and NetfilterQueue.
 
 ## Features
-- Input and output traffic filtering using `iptables`
-- Custom rule creation and deletion
-- Logging and error handling
-- Simple GUI using `tkinter`
+- Web-based management of firewall rules (allow/drop by IP, protocol, port)
+- NAT configuration for network forwarding
+- Blacklist IPs and create aliases for simplified rules
+- Real-time network traffic and system usage monitoring
+- Network scanning for device discovery
+- Secure user authentication and encrypted configuration
+- Logging and export of packet actions
+- Dark/light theme toggle
 
 ## Requirements
-- Ubuntu (or any Debian-based Linux distribution)
+- Ubuntu 20.04 or later
 - Python 3.8 or higher
-- Required Python libraries:
+- Root privileges for iptables and NetfilterQueue
+- Two network interfaces (e.g., WAN, LAN) for NAT
+- Required Python libraries (installed via `setup.sh`):
+  - `flask`
+  - `flask-socketio`
+  - `cryptography`
+  - `netifaces`
   - `psutil`
-  - `tkinter`
+  - `scapy`
+  - `python-nmap`
+  - `dnspython`
+  - `netfilterqueue`
 
 ## Installation
 
 ### Step 1: Clone the Repository
 ```bash
-git clone https://github.com/Hirusha101/OpenFirewall.git
-cd OpenFirewall 
-```
-### Step 2: Install Python & pip
-Make sure Python 3 is installed on your system. You can verify it by running
-```bash
-python3 --version
-```
-If it's not installed, you can install it by running
-```bash
-sudo apt update
-sudo apt install python3
-```
-Install pip. Install it if you don't already have it
-```bash
-sudo apt install python3-pip
-```
-Since this project uses tkinter, install it
-```bash
-sudo apt install python3-tk
+git clone https://github.com/your-username/FireSense.git
+cd FireSense
 ```
 
-### Step 3: Install Dependencies
+### Step 2: Install Dependencies
+Run the setup script to install system and Python dependencies, enable NAT forwarding, and configure iptables:
 ```bash
-pip install -r requirements.txt
+chmod +x setup.sh
+sudo ./setup.sh
 ```
 
-### Step 4: Grant Execute Permissions (if needed)
+### Step 3: Verify iptables
+Check iptables rules to ensure connectivity (SSH, HTTP, HTTPS) and NFQUEUE setup:
 ```bash
-chmod +x openfirewall.py
+sudo iptables -L -v -n
 ```
 
 ## Usage
 
 ### Start the Firewall
-To start the firewall:
+Run the firewall with root privileges:
 ```bash
-python3 openfirewall.py
+sudo python3 firewall.py
 ```
+The web interface will be available at `http://<instance-ip>:5000`.
+
+### Access the Web Interface
+1. Open `http://<instance-ip>:5000` in a browser.
+2. Log in with:
+   - Username: `admin`
+   - Password: `admin123`
+3. Change the password in the "Users" tab immediately.
+
+### Configure NAT
+1. Go to the "NAT" tab.
+2. Add a rule:
+   - Source Network: e.g., `192.168.1.0/24` (LAN)
+   - Output Interface: e.g., `ens33` (WAN)
+   - Enabled: Yes
+3. Save and verify:
+   ```bash
+   sudo iptables -t nat -L -v -n
+   ```
 
 ### Stop the Firewall
-To stop the firewall:
-```bash
-Ctrl + C
-```
+Press `Ctrl+C` in the terminal. iptables rules are cleaned up automatically.
 
 ### View Current Rules
-To list the current `iptables` rules:
+List current iptables rules:
 ```bash
-sudo iptables -L
+sudo iptables -L -v -n
 ```
 
 ## Troubleshooting
-### If Permission Denied Errors:
-Ensure you have root permissions:
-```bash
-sudo python3 openfirewall.py
-```
-
-### Reset iptables Rules:
-If the firewall becomes unresponsive, reset the rules:
+### If No Internet Connectivity:
+Clear iptables to restore access:
 ```bash
 sudo iptables -F
+sudo iptables -t nat -F
+sudo iptables -t mangle -F
+sudo iptables -t raw -F
+sudo iptables -X
+```
+Check network interfaces:
+```bash
+ip link
+ip addr
 ```
 
-## Created by - Hirusha😊
+### If NetfilterQueue Errors:
+Verify installation:
+```bash
+pip3 show netfilterqueue
+```
+Reinstall dependencies:
+```bash
+sudo pip3 install -r requirements.txt
+```
 
+### If NAT Not Working:
+Ensure IP forwarding is enabled:
+```bash
+sysctl net.ipv4.ip_forward
+```
+Confirm interface names match NAT rules:
+```bash
+ip link
+```
+
+## Created by - [Your Name] 😊
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
-
